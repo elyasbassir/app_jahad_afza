@@ -1,0 +1,119 @@
+﻿Build1=Default,aiandeh.sazan.run
+File1=index.bal
+File2=logo.png
+File3=NotoSansArabic-Regular.ttf
+File4=splash.bal
+File5=type.mp3
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+Group=Default Group
+Library1=animation
+Library2=core
+Library3=fileprovider
+Library4=javaobject
+Library5=phone
+Library6=reflection
+Library7=runtimepermissions
+Library8=b4xpages
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="24" android:targetSdkVersion="36"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~~\n~SetApplicationAttribute(android:theme, "@style/DarkTheme")~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style~\n~        name="DarkTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style~\n~        name="DarkTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">~\n~    </style>~\n~</resources>~\n~)~\n~~\n~~\n~~\n~~\n~SetApplicationAttribute(android:theme, "@style/LightTheme")~\n~CreateResource(values, colors.xml,~\n~<resources>~\n~    <color name="actionbar">#FFEE4257</color>~\n~   <color name="statusbar">#FFEE4257</color>~\n~   <color name="textColorPrimary">#000000</color>~\n~</resources>~\n~)~\n~CreateResource(values-v20, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Material.Light">~\n~        <item name="android:colorPrimary">@color/actionbar</item>~\n~        <item name="android:colorPrimaryDark">@color/statusbar</item>~\n~        <item name="android:textColorPrimary">@color/textColorPrimary</item>~\n~    </style>~\n~</resources>~\n~)~\n~CreateResource(values-v14, theme.xml,~\n~<resources>~\n~    <style name="LightTheme" parent="@android:style/Theme.Holo.Light">~\n~       <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>~\n~    </style>~\n~   <style name="CustomActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">~\n~       <item name="android:background">@color/actionbar</item>~\n~   </style>~\n~</resources>~\n~)
+Module1=AnimActivity
+Module2=B4XMainPage
+Module3=DoubleTaptoClose
+Module4=page_index
+Module5=Starter
+NumberOfFiles=5
+NumberOfLibraries=8
+NumberOfModules=5
+Version=11.5
+@EndOfDesignText@
+#AdditionalRes: ..\AnimActivity	
+#Region  Project Attributes 
+	#ApplicationLabel: جهاد افزا
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: true
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: false
+	#IncludeTitle: false
+#End Region
+
+Sub Process_Globals
+	
+	Dim time As Timer
+	Dim matn As String
+	Dim count As Int
+	Dim timer1 As Timer
+	Dim timer2 As Timer
+	Dim PW As PhoneWakeState
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private description As Label
+	Dim media As MediaPlayer
+	Dim anim As Animation
+	Private logo As ImageView
+	Private lable As Label
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)	
+	PW.KeepAlive(True)
+	Activity.LoadLayout("splash")
+	anim.InitializeAlpha("logo",0,1)
+	anim.RepeatCount=0
+	anim.Duration=2500
+	anim.Start(logo)
+	anim.Start(lable)
+	
+	media.Initialize2("media")
+	media.Load(File.DirAssets, "type.mp3")
+	media.Play
+	description.Text = ""
+	count = 1
+	matn = "اولین نرم افزار به عنوان بستری بین خیرین و نیازمندان در سطح کشور"
+	timer1.Initialize("timer1",80)
+	timer2.Initialize("timer2",20000)
+	timer1.Enabled = True
+	timer2.Enabled = True
+	
+	time.Initialize("time",7000)
+	time.Enabled=True
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+Sub time_Tick
+	media.Pause
+	StartActivity("page_index")
+	AnimActivity.setAnimActivity("zoom_enter1", "zoom_exit2")
+	Activity.Finish
+End Sub
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub timer1_Tick
+	If description.Text.Length = matn.Length Then
+		timer1.Enabled = False
+		media.Pause
+	Else
+		count = count + 1
+		description.Text = matn.Substring2(0, count)
+	End If
+End Sub
+ 
+Sub timer2_Tick
+	description.Text = ""
+	count = 1
+	matn = "اولین نرم افزار به عنوان بستری بین خیرین و نیازمندان در سطح کشور"
+	timer1.Enabled = True
+End Sub
