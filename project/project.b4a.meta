@@ -16,6 +16,6 @@ ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=1
-NavigationStack=B4XMainPage,Initialize,16,0,B4XMainPage,B4XPage_Created,32,1,page_index,Globals,13,0,page_index,Activity_Resume,22,0,page_index,Activity_Create,19,6,page_index,Activity_Pause,30,0,B4XMainPage,Class_Globals,17,0,B4XMainPage,ShowFile_Chooser,84,0,B4XMainPage,Activity_KeyPress,103,0,Visual Designer,splash.bal,-100,6
+NavigationStack=page_index,Globals,13,0,page_index,Activity_Resume,22,0,page_index,Activity_Create,19,6,page_index,Activity_Pause,30,0,B4XMainPage,Class_Globals,17,0,B4XMainPage,ShowFile_Chooser,84,0,B4XMainPage,Activity_KeyPress,103,0,Visual Designer,splash.bal,-100,6,B4XMainPage,WebView1_OverrideUrl,93,0,B4XMainPage,B4XPage_Created,27,1
 SelectedBuild=0
 VisibleModules=4,2

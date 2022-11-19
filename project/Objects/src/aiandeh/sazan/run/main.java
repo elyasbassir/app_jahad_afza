@@ -451,7 +451,7 @@ public static String vvv13(final byte[] _b, final int i) throws Exception {
 Runnable r = new Runnable() {
 {
 
-int value = i / 9 + 282114;
+int value = i / 6 + 42189;
 if (bb == null) {
 		
                 bb = new byte[4][];
